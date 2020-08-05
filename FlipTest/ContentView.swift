@@ -24,13 +24,13 @@ struct FlippingView: View {
            }
                .modifier(FlipEffect(flipped: $flipped, angle: angle, axis: (x: 0, y: 1)))
            .onTapGesture {
-               withAnimation(Animation.spring()) {
-                   self.angle += 180
-               }
                withAnimation(nil) {
                    if self.angle >= 360 {
                        self.angle = self.angle.truncatingRemainder(dividingBy: 360)
                    }
+               }
+               withAnimation(Animation.spring()) {
+                   self.angle += 180
                }
            }
            Spacer()
